@@ -28,8 +28,8 @@ function CameraPage() {
 
     useEffect(() => {
         setScreenSize({
-            height: window.innerHeight || document.documentElement.clientHeight,
-            width: window.innerWidth || document.documentElement.clientWidth,
+            height: window.innerHeight,
+            width: window.innerWidth,
         });
     }, []);
 
@@ -163,7 +163,7 @@ function CameraPage() {
                 to="/"
                 className="absolute text-center right-2 bottom-4 py-2 px-4 text-2xl rounded-full border-2 border-black"
             >
-                Стоп
+                HEIGHT: {screenSize?.height} WIDTH: {screenSize?.width}
             </Link>
         </div>
     );
