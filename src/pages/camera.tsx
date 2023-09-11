@@ -43,7 +43,7 @@ function CameraPage() {
 
             poseLandMarker = await PoseLandmarker.createFromOptions(vision, {
                 baseOptions: {
-                    modelAssetPath: "/src/models/pose_landmarker_full.task",
+                    modelAssetPath: "/public/models/pose_landmarker_full.task",
                 },
                 runningMode: "VIDEO",
             });
