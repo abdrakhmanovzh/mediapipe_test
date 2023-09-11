@@ -28,8 +28,8 @@ function CameraPage() {
 
     useEffect(() => {
         setScreenSize({
-            height: window.innerHeight,
-            width: window.innerWidth,
+            height: window.innerHeight || document.documentElement.clientHeight,
+            width: window.innerWidth || document.documentElement.clientWidth,
         });
     }, []);
 
