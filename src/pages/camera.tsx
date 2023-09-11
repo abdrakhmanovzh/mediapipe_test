@@ -41,8 +41,8 @@ function CameraPage() {
             navigator.mediaDevices
                 .getUserMedia({
                     video: {
-                        height: 500,
-                        width: 350,
+                        height: 450,
+                        width: 300,
                     },
                 })
                 .then((stream) => {
@@ -133,7 +133,7 @@ function CameraPage() {
     }, []);
 
     return (
-        <div className="h-[100svh] w-screen relative">
+        <div className="h-[100svh] w-[100svw] relative">
             {isModelLoading && (
                 <p className="text-2xl absolute top-10 left-1/2 -translate-x-1/2">
                     Загрузка модели...
