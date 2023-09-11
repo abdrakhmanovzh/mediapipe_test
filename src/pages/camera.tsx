@@ -38,7 +38,7 @@ function CameraPage() {
             if (!screenSize) return;
 
             const vision = await FilesetResolver.forVisionTasks(
-                "/node_modules/@mediapipe/tasks-vision/wasm"
+                "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
             );
 
             poseLandMarker = await PoseLandmarker.createFromOptions(vision, {
@@ -126,11 +126,8 @@ function CameraPage() {
                 const leftB = results.landmarks[0][13];
                 const leftC = results.landmarks[0][15];
                 setLeftAngle(getAngle(leftA, leftB, leftC));
-
-                // console.log("ANGLE IS: ", getAngle(rightA, rightB, rightC));
             }
             canvasCtx.restore();
-            console.log("HEIGHT: ", video?.videoHeight);
 
             requestAnimationFrame(predict);
         };
