@@ -22,7 +22,6 @@ type ScreenSize = {
 
 function CameraPage() {
     const [screenSize, setScreenSize] = useState<ScreenSize | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
 
     const [leftAngle, setLeftAngle] = useState(0);
     const [rightAngle, setRightAngle] = useState(0);
@@ -36,7 +35,6 @@ function CameraPage() {
 
     useEffect(() => {
         const initialSetup = async () => {
-            setIsLoading(true);
             if (!screenSize) return;
 
             const vision = await FilesetResolver.forVisionTasks(
@@ -49,10 +47,9 @@ function CameraPage() {
                 },
                 runningMode: "VIDEO",
             });
-            setIsLoading(false);
             video = document.getElementById("video") as HTMLVideoElement;
             canvas = document.getElementById("canvas") as HTMLCanvasElement;
-            canvasCtx = canvas.getContext("2d") as CanvasRenderingContext2D;
+            canvasCtx = canvas?.getContext("2d") as CanvasRenderingContext2D;
             navigator.mediaDevices
                 .getUserMedia({
                     video: {
@@ -144,14 +141,6 @@ function CameraPage() {
             }
         };
     }, [screenSize]);
-
-    if (isLoading) {
-        return (
-            <div className="h-[100svh] w-screen flex items-center justify-center">
-                <p className="text-2xl">Загрузка...</p>
-            </div>
-        );
-    }
 
     return (
         <div className="h-[100svh] w-screen relative">
