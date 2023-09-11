@@ -41,7 +41,7 @@ function CameraPage() {
             navigator.mediaDevices
                 .getUserMedia({
                     video: {
-                        height: 600,
+                        height: 400,
                         width: 300,
                     },
                 })
