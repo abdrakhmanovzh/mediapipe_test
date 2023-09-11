@@ -15,28 +15,15 @@ let canvas: HTMLCanvasElement;
 let canvasCtx: CanvasRenderingContext2D;
 let results: PoseLandmarkerResult;
 
-type ScreenSize = {
-    height: number;
-    width: number;
-};
-
 function CameraPage() {
-    const [screenSize, setScreenSize] = useState<ScreenSize | null>(null);
+    const [isModelLoading, setIsModelLoading] = useState(true);
 
     const [leftAngle, setLeftAngle] = useState(0);
     const [rightAngle, setRightAngle] = useState(0);
 
     useEffect(() => {
-        setScreenSize({
-            height: window.innerHeight,
-            width: window.innerWidth,
-        });
-    }, []);
-
-    useEffect(() => {
         const initialSetup = async () => {
-            if (!screenSize) return;
-
+            setIsModelLoading(true);
             const vision = await FilesetResolver.forVisionTasks(
                 "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
             );
@@ -47,6 +34,7 @@ function CameraPage() {
                 },
                 runningMode: "VIDEO",
             });
+            setIsModelLoading(false);
             video = document.getElementById("video") as HTMLVideoElement;
             canvas = document.getElementById("canvas") as HTMLCanvasElement;
             canvasCtx = canvas?.getContext("2d") as CanvasRenderingContext2D;
@@ -142,7 +130,15 @@ function CameraPage() {
                 video.srcObject = null;
             }
         };
-    }, [screenSize]);
+    }, []);
+
+    if (isModelLoading) {
+        return (
+            <div className="h-[100svh] w-screen flex items-center justify-center">
+                <p className="text-2xl">Загрузка модели...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="h-[100svh] w-screen relative">
