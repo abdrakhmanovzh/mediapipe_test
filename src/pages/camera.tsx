@@ -53,8 +53,8 @@ function CameraPage() {
             navigator.mediaDevices
                 .getUserMedia({
                     video: {
-                        height: screenSize?.height,
-                        width: screenSize?.width,
+                        height: screenSize?.height * 0.9,
+                        width: screenSize?.width * 0.9,
                     },
                 })
                 .then((stream) => {
@@ -163,7 +163,7 @@ function CameraPage() {
                 to="/"
                 className="absolute text-center right-2 bottom-4 py-2 px-4 text-2xl rounded-full border-2 border-black"
             >
-                HEIGHT: {screenSize?.height} WIDTH: {screenSize?.width}
+                HEIGHT: {video?.videoHeight} WIDTH: {video?.videoWidth}
             </Link>
         </div>
     );
