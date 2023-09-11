@@ -142,11 +142,11 @@ function CameraPage() {
             <video
                 autoPlay
                 id="video"
-                className="absolute top-0 left-1/2 -translate-x-1/2 rounded-md"
+                className="absolute top-10 left-1/2 -translate-x-1/2 rounded-md"
             />
             <canvas
                 id="canvas"
-                className="absolute z-10 top-0 left-1/2 -translate-x-1/2"
+                className="absolute z-10 top-10 left-1/2 -translate-x-1/2"
             ></canvas>
 
             <div className="flex flex-col items-center justify-center p-2 absolute left-2 bottom-4">
