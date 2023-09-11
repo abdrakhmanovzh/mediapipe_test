@@ -132,16 +132,13 @@ function CameraPage() {
         };
     }, []);
 
-    if (isModelLoading) {
-        return (
-            <div className="h-[100svh] w-screen flex items-center justify-center">
-                <p className="text-2xl">Загрузка модели...</p>
-            </div>
-        );
-    }
-
     return (
         <div className="h-[100svh] w-screen relative">
+            {isModelLoading && (
+                <p className="text-2xl absolute top-10 left-1/2 -translate-x-1/2">
+                    Загрузка модели...
+                </p>
+            )}
             <video
                 autoPlay
                 id="video"
