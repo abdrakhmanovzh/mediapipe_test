@@ -53,8 +53,8 @@ function CameraPage() {
             navigator.mediaDevices
                 .getUserMedia({
                     video: {
-                        height: screenSize?.height * 0.9,
-                        width: screenSize?.width * 0.9,
+                        height: 500,
+                        width: 350,
                     },
                 })
                 .then((stream) => {
@@ -116,15 +116,17 @@ function CameraPage() {
                 }
 
                 // Calculating the angle between the elbow and wrist points.
-                const rightA = results.landmarks[0][12];
-                const rightB = results.landmarks[0][14];
-                const rightC = results.landmarks[0][16];
-                setRightAngle(getAngle(rightA, rightB, rightC));
+                const rightA = results.landmarks?.[0]?.[12];
+                const rightB = results.landmarks?.[0]?.[14];
+                const rightC = results.landmarks?.[0]?.[16];
+                if (rightA && rightB && rightC)
+                    setRightAngle(getAngle(rightA, rightB, rightC));
 
-                const leftA = results.landmarks[0][11];
-                const leftB = results.landmarks[0][13];
-                const leftC = results.landmarks[0][15];
-                setLeftAngle(getAngle(leftA, leftB, leftC));
+                const leftA = results.landmarks?.[0]?.[11];
+                const leftB = results.landmarks?.[0]?.[13];
+                const leftC = results.landmarks?.[0]?.[15];
+                if (leftA && leftB && leftC)
+                    setLeftAngle(getAngle(leftA, leftB, leftC));
             }
             canvasCtx.restore();
 
